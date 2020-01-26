@@ -47,6 +47,7 @@ class Main {
           y = reader.nextDouble();
           w = reader.nextDouble();
           h = reader.nextDouble();
+          
           rect2DList.add(new Rectangle2D.Double(x, y, w, h));
           break;
         default:
@@ -65,24 +66,24 @@ class Main {
     if (pCount == 2 || lCount ==2 || rCount == 2) {
       if (pCount == 2 && point2DList != null) {
         //point&point
-        res = Result.relate(point2DList.get(0),point2DList.get(0));
+        res = Spatial.relate(point2DList.get(0),point2DList.get(0));
       } else if (lCount == 2 && line2DList != null) {
         //line&line 
-        res = Result.relate(line2DList.get(0), line2DList.get(1));
+        res = Spatial.relate(line2DList.get(0), line2DList.get(1));
       } else if (rCount == 2 && rect2DList != null) {
         //rect&rect
-        res = Result.relate(rect2DList.get(0), rect2DList.get(1));
+        res = Spatial.relate(rect2DList.get(0), rect2DList.get(1));
       }
       //diffrent polygons
     } else if (pCount == 0) {
       //rect&line
-      res = Result.relate(rect2DList.get(0), line2DList.get(0));
+      res = Spatial.relate(rect2DList.get(0), line2DList.get(0));
     } else if (lCount == 0) {
       //rect&point
-      res = Result.relate(rect2DList.get(0), point2DList.get(0));
+      res = Spatial.relate(rect2DList.get(0), point2DList.get(0));
     } else { //(rCount == 0)
       //line&point
-      res = Result.relate(line2DList.get(0), point2DList.get(0));
+      res = Spatial.relate(line2DList.get(0), point2DList.get(0));
     } 
     System.out.println(res);
   }
