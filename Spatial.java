@@ -3,21 +3,15 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 
 public final class Spatial {
-  //math class inspired
-  private Spatial(){
-  }
+  private Spatial() {
 
-  public enum Result {
-    DISJOINT,
-    ANYINTERSECT,
-    CONTAINS,
-    COVERS,
-    EQUALS;
   }
-
+  
   //rect&rect
   public static Result relate(Rectangle2D.Double Rect1, Rectangle2D.Double Rect2) {
-    Result result = Result.DISJOINT;
+    Result result = Result.NONE;
+
+
     return result;
   }
 
@@ -34,11 +28,22 @@ public final class Spatial {
 
 
   //line&point
-
-
-
+  public static Result relate(Line2D.Double Line, Point2D.Double Point) {
+    if (Line.contains(Point)) result = COVERS; //there isn't ANYINTERSECT nor CONTAINS relation
+    else result = DISJOINT;
+    return result;
+  }
 
   //point&point
+  public static Result relate(Point2D.Double Point1, Point2D.Double Point2) {
+    Result result = Result.NONE;
+    if (Point1.equals(Point2)) {
+      result = EQUAL; //there isn't ANYINTERSECT, CONTAINS nor COVERS relation
+    } else result = DISJOINT;
 
+    return result;
+  }
+
+
+  
 }
-
