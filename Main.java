@@ -9,9 +9,9 @@ class Main {
 
     //init
     Scanner reader = new Scanner(System.in);
-    ArrayList<Point2D> point2DList = new ArrayList<>();
-    ArrayList<Line2D> line2DList = new ArrayList<>();
-    ArrayList<Rectangle2D> rect2DList = new ArrayList<>();
+    ArrayList<Point2D.Double> point2DList = new ArrayList<>();
+    ArrayList<Line2D.Double> line2DList = new ArrayList<>();
+    ArrayList<Rectangle2D.Double> rect2DList = new ArrayList<>();
     ArrayList<String> titles = new ArrayList<>();
     titles.add("First polygon");
     titles.add("Second polygon");
@@ -38,7 +38,15 @@ class Main {
           y = reader.nextDouble();
           x2 = reader.nextDouble();
           y2 = reader.nextDouble();
-          line2DList.add(new Line2D.Double(x, x2, y, y2));
+          if (x > x2 || (x == x2 && y > y2)) {
+            double tmpX = x;
+            x = x2;
+            x2 = tmpX;
+            double tmpY = y;
+            y = y2;
+            y2 = tmpY;
+          }
+          line2DList.add(new Line2D.Double(x, y, x2, y2));
           break;
         case 3:
           //rect 
@@ -47,7 +55,14 @@ class Main {
           y = reader.nextDouble();
           w = reader.nextDouble();
           h = reader.nextDouble();
-          
+          if (w < 0) {
+            w *= -1;
+            x -= w;
+          }
+          if (h < 0) {
+            h *= -1;
+            y -= w;
+          }
           rect2DList.add(new Rectangle2D.Double(x, y, w, h));
           break;
         default:
@@ -87,4 +102,5 @@ class Main {
     } 
     System.out.println(res);
   }
+
 }
