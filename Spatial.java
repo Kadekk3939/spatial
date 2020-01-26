@@ -10,6 +10,9 @@ public final class Spatial {
   //rect&rect
   public static Result relate(Rectangle2D Rect1, Rectangle2D Rect2) {
     Result result = Result.NONE;
+    if (Rect1.contains(Rect2.getX(),Rect2.getY(),Rect2.getWidth(),Rect2.getHeight()) || Rect2.contains(Rect1.getX(),Rect1.getY(),Rect1.getWidth(),Rect1.getHeight())) {
+      //if ()
+    }
 
 
     return result;
@@ -45,8 +48,8 @@ public final class Spatial {
   //line&point
   public static Result relate(Line2D Line, Point2D Point) {
     Result result = Result.NONE;
-    if (Line.contains(Point)) result = COVERS; //there isn't ANYINTERSECT nor CONTAINS relation
-    else result = DISJOINT;
+    if (Line.contains(Point)) result = Result.COVERS; //there isn't ANYINTERSECT nor CONTAINS relation
+    else result = Result.DISJOINT;
     return result;
   }
 
@@ -54,8 +57,8 @@ public final class Spatial {
   public static Result relate(Point2D Point1, Point2D Point2) {
     Result result = Result.NONE;
     if (Point1.equals(Point2)) {
-      result = EQUAL; //there isn't ANYINTERSECT, CONTAINS nor COVERS relation
-    } else result = DISJOINT;
+      result = Result.EQUAL; //there isn't ANYINTERSECT, CONTAINS nor COVERS relation
+    } else result = Result.DISJOINT;
 
     return result;
   }
