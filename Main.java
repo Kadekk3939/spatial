@@ -13,8 +13,8 @@ class Main {
     ArrayList<Line2D.Double> line2DList = new ArrayList<>();
     ArrayList<Rectangle2D.Double> rect2DList = new ArrayList<>();
     ArrayList<String> titles = new ArrayList<>();
-    titles.add("First polygon");
-    titles.add("Second polygon");
+    titles.add("\nFirst polygon");
+    titles.add("\nSecond polygon");
     int poly = 0;
     double x,y,x2,y2,w,h;
 
@@ -26,14 +26,16 @@ class Main {
       switch(poly) {
         case 1:
           //point 
-          System.out.println("point");
+          System.out.println("You've chosen point.");
+          System.out.println("Enter coordinates: x y ");
           x = reader.nextDouble();
           y = reader.nextDouble();
           point2DList.add(new Point2D.Double(x, y));
           break;
         case 2:
           //line 
-          System.out.println("line");
+          System.out.println("You've chosen line.");
+          System.out.println("Enter coordinates: x1 y1 x2 y2");
           x = reader.nextDouble();
           y = reader.nextDouble();
           x2 = reader.nextDouble();
@@ -50,7 +52,8 @@ class Main {
           break;
         case 3:
           //rect 
-          System.out.println("rect");
+          System.out.println("You've chosen rectangle.");
+          System.out.println("Enter coordinates: x y width height"); //x,y of lower-left corner
           x = reader.nextDouble();
           y = reader.nextDouble();
           w = reader.nextDouble();
@@ -66,7 +69,7 @@ class Main {
           rect2DList.add(new Rectangle2D.Double(x, y, w, h));
           break;
         default:
-          System.out.println("error");
+          System.out.println("Error: wrong shape number.");
           System.exit(1);
       }
     }
@@ -100,6 +103,8 @@ class Main {
       //line&point
       res = Spatial.relate(line2DList.get(0), point2DList.get(0));
     } 
+
+    System.out.println("\nRelation:");
     System.out.println(res);
   }
 
